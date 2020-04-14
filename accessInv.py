@@ -115,6 +115,7 @@ def main():
 		
 			addNewValuesCSV(filename, items)
 
+		# Adding Function for user to use program again
 		question = input("Would you like to use this progam again? 'y' for Yes, 'n' for No: ")
 		if 'n' in question.lower():
 			keepGoing = True
