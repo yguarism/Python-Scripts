@@ -116,4 +116,5 @@ def main():
 		if 'n' in question.lower():
 			keepGoing = True
 
-main()
+def __name__ =="__main__":
+	main()
