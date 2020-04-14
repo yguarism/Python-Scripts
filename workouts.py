@@ -164,7 +164,7 @@ def writetoText (filename, routine):
 		for exercise in routine:
 			f.write(exercise.name + "\n")
 
-# Optional Feature to send workout through Facebook Messenger. Not Used Currently.
+# In Progress: Optional Feature to send workout through Facebook Messenger. Not Used Currently.
 def fbMessage(routine):
 	client = Client('#Email', '#Password')
 	text = []
@@ -251,9 +251,12 @@ def main():
 
 	# Create Output File and Open Text File for User
 	outputfilename = os.getcwd() + r"\routine.txt"
-	
-	#fbMessage(ordered_routine)
 	writetoText(outputfilename, ordered_routine)
+	
+	fb_true = input("Do you want to send this workout to your Facebook Friend?")
+	# Send Workout to Fb Friend
+	users_name = input("What is your Friend's Facebook Name?")
+	#fbMessage(ordered_routine)
 	os.startfile(outputfilename)
 	
 
