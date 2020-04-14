@@ -13,11 +13,13 @@ def readCSV (filename):
 		f.close()
 	return item_list
 
+# Append Values to Bottom of CSV File
 def appendtoCSV(filename, line):
 	with open(filename, "a") as f:
 		f.write(line)
 		f.write('\n')
 
+# Add Values to CSV File
 def addNewValuesCSV (filename, dict_data):
 	csv_columns = ['Location in Kitchen', 'Quantity', 'Item', 'Expiry Date', 'Need to Buy']
 	with open(filename, 'w', newline = '') as f:
@@ -26,6 +28,7 @@ def addNewValuesCSV (filename, dict_data):
 		for data in dict_data:
 			writer.writerow(data)
 
+# Print an Inventory Item for Display to User
 def printItem (item):
 	print("Matching Iventory Item(s):")
 	for name, value in item.items(): 
