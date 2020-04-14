@@ -157,26 +157,29 @@ def OrderFullRoutine(group_names, routine, num_exercises):
 
 	return ordered_routine
 
+# Writes Exercises Chosen to A text File to be opened for User
 def writetoText (filename, routine):
 	with open(filename, "w+") as f:
 		f.write("The Exercise Routine: \n")
 		for exercise in routine:
 			f.write(exercise.name + "\n")
 
+# Optional Feature to send workout through Facebook Messenger. Not Used Currently.
 def fbMessage(routine):
-	client = Client('yrinamaple@gmail.com', '<3volleyball14')
+	client = Client('#Email', '#Password')
 	text = []
 	for item in routine:
 		text.append(item.name)
 	txt = ', '.join(text)
 	print(txt)
 	input("w")
-	users = client.searchForUsers('Lucas Pilozo-Hibbit')
+	users = client.searchForUsers('#Users Name in Facebook')
 	person_id = users[0].uid
 	print(users)
 	input("w")
 	#print(person_id)
-	client.send(Message(text= "This is sent from my program :P. Your fun Routine is: {}".format(txt)), thread_id = person_id, thread_type = ThreadType.USER)
+	msg = "This is sent from my program :P. Your fun Routine is: {}".format(txt)
+	client.send(Message(text= msg), thread_id = person_id, thread_type = ThreadType.USER)
 
 	client.logout()
 
