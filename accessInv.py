@@ -37,7 +37,6 @@ def printItem (item):
 	print('\n')
 
 def main():
-	"THIS IS THE MAIN FUNCTION OF THIS CODE"
 	filename = os.getcwd() + r"\inventory.csv"
 	items = readCSV(filename)
 	keepGoing = False
