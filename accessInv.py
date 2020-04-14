@@ -1,3 +1,7 @@
+# Allows access to read and modify inventory.csv
+# Yrina Guarisma
+# April 2020
+
 import os
 import csv
 
@@ -13,13 +17,14 @@ def readCSV (filename):
 		f.close()
 	return item_list
 
-# Append Values to Bottom of CSV File
+
+# Adds a line to the bottom of the inventory.csv File
 def appendtoCSV(filename, line):
 	with open(filename, "a") as f:
 		f.write(line)
 		f.write('\n')
 
-# Add Values to CSV File
+# Rewrites CSV rows
 def addNewValuesCSV (filename, dict_data):
 	csv_columns = ['Location in Kitchen', 'Quantity', 'Item', 'Expiry Date', 'Need to Buy']
 	with open(filename, 'w', newline = '') as f:
@@ -28,7 +33,8 @@ def addNewValuesCSV (filename, dict_data):
 		for data in dict_data:
 			writer.writerow(data)
 
-# Print an Inventory Item for Display to User
+
+# Print Formatting for an inventory item
 def printItem (item):
 	print("Matching Iventory Item(s):")
 	for name, value in item.items(): 
@@ -39,8 +45,8 @@ def printItem (item):
 		
 	print('\n')
 
+# Main Function
 def main():
-	"THIS IS THE MAIN FUNCTION OF THIS CODE"
 	filename = os.getcwd() + r"\inventory.csv"
 	items = readCSV(filename)
 	keepGoing = False
