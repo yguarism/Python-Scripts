@@ -263,7 +263,7 @@ def main():
 	
 	#fbMessage(ordered_routine)
 	writetoText(outputfilename, ordered_routine)
-	os.startfile(outputfilename)
+	open_file(outputfilename)
 	
 
 if __name__ =="__main__":
