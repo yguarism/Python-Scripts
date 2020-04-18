@@ -9,8 +9,8 @@ import re
 import sys
 from random import seed
 from random import randint
-from fbchat import Client
-from fbchat.models import *
+#from fbchat import Client
+#from fbchat.models import *
 
 class Exercise:
 	name = ""
@@ -53,7 +53,7 @@ def chooseFullExercises (exercise_list, num_exercises):
 	SG_count = {}
 	routine = []
 	min_PG = 0
-	threshhold = int(num_exercises/2)
+	threshhold = num_exercises
 	
 	while min_PG < num_exercises:
 		found = False
@@ -84,7 +84,7 @@ def chooseFullExercises (exercise_list, num_exercises):
 				elif SG_count.get(exercise.secondGroup, -2) < threshhold:
 					# Add exercise to routine
 					routine.append(exercise)
-					 
+					print("Added")
 					# Add Primary group added to routine in count dictionary
 					PG_count[exercise.primGroup] += 1
 
@@ -164,24 +164,33 @@ def writetoText (filename, routine):
 		for exercise in routine:
 			f.write(exercise.name + "\n")
 
-# Optional Feature to send workout through Facebook Messenger. Not Used Currently.
-def fbMessage(routine):
-	client = Client('#Email', '#Password')
-	text = []
-	for item in routine:
-		text.append(item.name)
-	txt = ', '.join(text)
-	print(txt)
-	input("w")
-	users = client.searchForUsers('#Users Name in Facebook')
-	person_id = users[0].uid
-	print(users)
-	input("w")
-	#print(person_id)
-	msg = "This is sent from my program :P. Your fun Routine is: {}".format(txt)
-	client.send(Message(text= msg), thread_id = person_id, thread_type = ThreadType.USER)
+# # Optional Feature to send workout through Facebook Messenger. Not Used Currently.
+# def fbMessage(routine):
+# 	#client = Client('#Email', '#Password')
+# 	text = []
+# 	for item in routine:
+# 		text.append(item.name)
+# 	txt = ', '.join(text)
+# 	print(txt)
+# 	input("w")
+# 	#users = client.searchForUsers('#Users Name in Facebook')
+# 	#person_id = users[0].uid
+# 	#print(users)
+# 	input("w")
+# 	#print(person_id)
+# 	msg = "This is sent from my program :P. Your fun Routine is: {}".format(txt)
+# 	#client.send(Message(text= msg), thread_id = person_id, thread_type = ThreadType.USER)
 
-	client.logout()
+# 	#client.logout()
+
+# Different print options depending on OS
+def open_file(filename):
+	if "win" in sys.platform:
+		os.startfile(filename)
+	else:
+		with open(filename, 'r') as f:
+			for line in f:
+				print (line)
 
 
 def main():
@@ -192,7 +201,7 @@ def main():
 	routine = []
 	
 	# Open the CSV File, Return 1 List of Exercise Objects
-	filename = os.getcwd() + r"\exercises.csv"
+	filename = os.getcwd() + r"/exercises.csv"
 	exercises_list, counts = readCSV(filename)
 	
 	# Number of Muscle Groups Desired in Workout
